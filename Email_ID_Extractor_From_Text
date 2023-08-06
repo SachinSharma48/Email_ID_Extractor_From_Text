@@ -1,0 +1,21 @@
+import csv
+import re
+def extract_emails(file_path):
+    with open(file_path, 'r', encoding='utf-8') as file:
+        text = file.read()
+
+    email_regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b'
+    emails = re.findall(email_regex, text)
+
+    return emails
+file_path = r"C:\Users\sachin\Desktop\test.txt"
+result = extract_emails(file_path)
+output_file_path = r"C:\Users\Desktop\results.csv"
+with open(output_file_path, 'w', newline='', encoding='utf-8') as file:
+    writer = csv.writer(file)
+    writer.writerow(['Email'])
+
+    for email in result:
+        writer.writerow([email])
+
+
